@@ -15,7 +15,7 @@ export function ProfileCard({ username }: { username?: string }) {
   // Show welcome message when no username is provided
   if (!username) {
     return (
-      <Card className="bg-card text-card-foreground p-4 sm:p-6 lg:p-8 rounded-lg text-center">
+      <Card className="bg-card text-card-foreground p-4 sm:p-6 lg:p-8 rounded-lg text-center bg-background">
         <div className="max-w-4xl mx-auto">
           <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
             <span className="text-2xl sm:text-3xl">📊</span>

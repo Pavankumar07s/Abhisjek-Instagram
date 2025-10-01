@@ -26,7 +26,7 @@ export function AnalyticsSection({ username }: { username?: string }) {
   // Show welcome message when no username is provided (check this FIRST)
   if (!username) {
     return (
-      <Card className="bg-card text-card-foreground p-4 sm:p-6 lg:p-8 rounded-lg text-center">
+      <Card className="bg-card text-card-foreground p-4 sm:p-6 lg:p-8 rounded-lg text-center bg-background">
         <div className="max-w-2xl mx-auto">
           <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
             <span className="text-xl sm:text-2xl">📊</span>
