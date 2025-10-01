@@ -1,5 +1,3 @@
-# Abhisjek-Instagram
-
 # Instagram API Integration
 
 This project integrates with the Instagram Premium API 2023 to fetch real user profile data.
