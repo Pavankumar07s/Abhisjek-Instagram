@@ -55,17 +55,17 @@ export function ProfileCard({ username }: { username?: string }) {
   if (error) return <div className="text-destructive">Failed to load profile.</div>
 
   return (
-    <Card className="bg-card text-card-foreground p-6 rounded-lg">
-      <div className="space-y-6">
+    <Card className="bg-card text-card-foreground p-4 sm:p-6 rounded-lg">
+      <div className="space-y-4 sm:space-y-6">
         {/* Header Section */}
-        <div className="flex items-start gap-6">
-          <div className="relative">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+          <div className="relative flex-shrink-0">
             <img
               src={data?.profilePic || "/placeholder.svg?height=160&width=160&query=profile%20avatar"}
               alt="Profile picture"
               width={120}
               height={120}
-              className="rounded-full border-4 border-primary/20 object-cover"
+              className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full border-4 border-primary/20 object-cover"
               onError={(e) => {
                 console.log("Image failed to load:", data?.profilePic);
                 e.currentTarget.src = "/placeholder.svg?height=160&width=160&query=profile%20avatar";
@@ -76,36 +76,36 @@ export function ProfileCard({ username }: { username?: string }) {
             />
             {data?.isVerified && (
               <div className="absolute -bottom-1 -right-1 bg-blue-500 text-white rounded-full p-1">
-                <Shield className="w-4 h-4" />
+                <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
               </div>
             )}
           </div>
           
-          <div className="flex-1 space-y-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="text-2xl font-bold text-balance">
+          <div className="flex-1 w-full space-y-3 text-center sm:text-left">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-center sm:justify-start gap-2">
+                  <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-balance truncate">
                     {data?.name || "Loading..."}
                   </h1>
                   {data?.isPrivate && (
-                    <Lock className="w-5 h-5 text-muted-foreground" />
+                    <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground flex-shrink-0" />
                   )}
                 </div>
-                <p className="text-muted-foreground text-lg">@{data?.username || ""}</p>
+                <p className="text-muted-foreground text-base sm:text-lg truncate">@{data?.username || ""}</p>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2">
                 {data?.categoryName && (
-                  <Badge variant="secondary" className="px-3 py-1">
+                  <Badge variant="secondary" className="px-2 sm:px-3 py-1 text-xs sm:text-sm">
                     {data.categoryName}
                   </Badge>
                 )}
-                <Badge className="px-3 py-1">Influencer</Badge>
+                <Badge className="px-2 sm:px-3 py-1 text-xs sm:text-sm">Influencer</Badge>
               </div>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4">
               {isLoading ? (
                 <>
                   <SkeletonStat label="Followers" />
@@ -125,9 +125,9 @@ export function ProfileCard({ username }: { username?: string }) {
 
         {/* Biography Section */}
         {data?.biography && (
-          <div className="space-y-3">
-            <h3 className="font-semibold text-lg">Biography</h3>
-            <p className="text-muted-foreground whitespace-pre-wrap leading-relaxed">
+          <div className="space-y-2 sm:space-y-3">
+            <h3 className="font-semibold text-base sm:text-lg">Biography</h3>
+            <p className="text-sm sm:text-base text-muted-foreground whitespace-pre-wrap leading-relaxed">
               {data.biography}
             </p>
           </div>
@@ -135,8 +135,8 @@ export function ProfileCard({ username }: { username?: string }) {
 
         {/* Bio Links Section */}
         {data?.bioLinks && data.bioLinks.length > 0 && (
-          <div className="space-y-3">
-            <h3 className="font-semibold text-lg">Links</h3>
+          <div className="space-y-2 sm:space-y-3">
+            <h3 className="font-semibold text-base sm:text-lg">Links</h3>
             <div className="flex flex-wrap gap-2">
               {data.bioLinks.map((link, index) => (
                 <a
@@ -144,10 +144,10 @@ export function ProfileCard({ username }: { username?: string }) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-border hover:bg-secondary/50 transition-colors"
+                  className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-md border border-border hover:bg-secondary/50 transition-colors text-xs sm:text-sm"
                 >
-                  <ExternalLink className="w-4 h-4" />
-                  <span className="text-sm">{link.title}</span>
+                  <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="truncate max-w-[120px] sm:max-w-none">{link.title}</span>
                 </a>
               ))}
             </div>
@@ -160,18 +160,20 @@ export function ProfileCard({ username }: { username?: string }) {
 
 function Stat({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="rounded-md border border-border p-3">
-      <p className="text-sm text-muted-foreground">{label}</p>
-      <p className="text-xl font-medium">{value}</p>
+    <div className="rounded-md border border-border p-2 sm:p-3 text-center">
+      <p className="text-xs sm:text-sm text-muted-foreground truncate">{label}</p>
+      <p className="text-sm sm:text-lg lg:text-xl font-medium truncate" title={value.toString()}>
+        {value}
+      </p>
     </div>
   )
 }
 
 function SkeletonStat({ label }: { label: string }) {
   return (
-    <div className="rounded-md border border-border p-3">
-      <p className="text-sm text-muted-foreground">{label}</p>
-      <div className="h-6 w-24 bg-secondary rounded mt-1" />
+    <div className="rounded-md border border-border p-2 sm:p-3 text-center">
+      <p className="text-xs sm:text-sm text-muted-foreground">{label}</p>
+      <div className="h-4 sm:h-5 lg:h-6 w-full bg-secondary rounded mt-1 animate-pulse" />
     </div>
   )
 }

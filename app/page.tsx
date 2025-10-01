@@ -58,7 +58,7 @@ export default function Page({ searchParams }: { searchParams?: { username?: str
         <ReelsGrid username={username} />
       </section>
 
-      <footer className="mt-12 border-t border-border pt-6 text-sm text-muted-foreground">
+      <footer className="mt-8 sm:mt-12 border-t border-border pt-4 sm:pt-6 text-xs sm:text-sm text-muted-foreground text-center">
         <p>
           {"© "}
           {new Date().getFullYear()} {username ? username : "Abhishek Yadav "}. All rights reserved.

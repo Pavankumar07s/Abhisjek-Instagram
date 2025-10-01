@@ -84,14 +84,13 @@ export function PostsGrid({ username }: { username?: string }) {
 
 function GridSkeleton() {
   return (
-    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      {Array.from({ length: 6 }).map((_, i) => (
+    <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {Array.from({ length: 8 }).map((_, i) => (
         <Card key={i} className="bg-card p-0 overflow-hidden">
-          <div className="h-56 bg-secondary" />
-          <div className="p-4 space-y-2">
-            <div className="h-4 w-2/3 bg-secondary rounded" />
-            <div className="h-4 w-1/3 bg-secondary rounded" />
-            <div className="h-6 w-1/2 bg-secondary rounded" />
+          <div className="h-40 sm:h-48 lg:h-52 bg-secondary animate-pulse" />
+          <div className="p-3 sm:p-4 space-y-2">
+            <div className="h-3 sm:h-4 w-full bg-secondary rounded animate-pulse" />
+            <div className="h-3 sm:h-4 w-2/3 bg-secondary rounded animate-pulse" />
           </div>
         </Card>
       ))}
