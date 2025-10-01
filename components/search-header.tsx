@@ -28,16 +28,16 @@ export function SearchHeader() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex items-center gap-2">
+    <form onSubmit={onSubmit} className="flex items-center gap-2 w-full sm:w-auto">
       <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Enter Instagram username (e.g. natgeo, instagram)"
         aria-label="Search username"
-        className="w-72 focus:w-80 transition-all duration-200"
+        className="w-full sm:w-64 md:w-72 lg:w-80 transition-all duration-200 text-sm"
       />
-      <Button type="submit" className="px-4 py-2 text-sm font-medium">
-        🔍 Search
+      <Button type="submit" className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap">
+        🔍 <span className="hidden sm:inline">Search</span>
       </Button>
     </form>
   )

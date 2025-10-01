@@ -15,36 +15,36 @@ export function ProfileCard({ username }: { username?: string }) {
   // Show welcome message when no username is provided
   if (!username) {
     return (
-      <Card className="bg-card text-card-foreground p-8 rounded-lg text-center bg-background">
-        <div className="max-w-2xl mx-auto">
-          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-            <span className="text-3xl">📊</span>
+      <Card className="bg-card text-card-foreground p-4 sm:p-6 lg:p-8 rounded-lg text-center">
+        <div className="max-w-4xl mx-auto">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+            <span className="text-2xl sm:text-3xl">📊</span>
           </div>
-          <h1 className="text-3xl font-bold mb-4">Welcome to Instagram Analytics Dashboard</h1>
-          <p className="text-lg text-muted-foreground mb-6">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">Welcome to Instagram Analytics Dashboard</h1>
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-4 sm:mb-6">
             Discover detailed insights about any public Instagram profile. Get analytics on posts, reels, engagement rates, and audience demographics.
           </p>
-          <div className="bg-muted/50 rounded-lg p-6 mb-6">
-            <h2 className="text-lg font-semibold mb-3">🔍 Get Started</h2>
-            <p className="text-muted-foreground">
+          <div className="bg-muted/50 rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
+            <h2 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">🔍 Get Started</h2>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Enter an Instagram username in the search bar above to begin analyzing their profile, posts, and engagement metrics.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-4 text-sm">
-            <div className="p-4 rounded-lg bg-background border">
-              <div className="text-2xl mb-2">📈</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-sm">
+            <div className="p-3 sm:p-4 rounded-lg bg-background border">
+              <div className="text-xl sm:text-2xl mb-2">📈</div>
               <div className="font-medium">Analytics</div>
-              <div className="text-muted-foreground">Engagement rates & trends</div>
+              <div className="text-muted-foreground text-xs sm:text-sm">Engagement rates & trends</div>
             </div>
-            <div className="p-4 rounded-lg bg-background border">
-              <div className="text-2xl mb-2">📸</div>
+            <div className="p-3 sm:p-4 rounded-lg bg-background border">
+              <div className="text-xl sm:text-2xl mb-2">📸</div>
               <div className="font-medium">Content</div>
-              <div className="text-muted-foreground">Posts & reels analysis</div>
+              <div className="text-muted-foreground text-xs sm:text-sm">Posts & reels analysis</div>
             </div>
-            <div className="p-4 rounded-lg bg-background border">
-              <div className="text-2xl mb-2">👥</div>
+            <div className="p-3 sm:p-4 rounded-lg bg-background border sm:col-span-2 lg:col-span-1">
+              <div className="text-xl sm:text-2xl mb-2">👥</div>
               <div className="font-medium">Audience</div>
-              <div className="text-muted-foreground">Demographics & insights</div>
+              <div className="text-muted-foreground text-xs sm:text-sm">Demographics & insights</div>
             </div>
           </div>
         </div>

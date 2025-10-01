@@ -26,34 +26,34 @@ export function AnalyticsSection({ username }: { username?: string }) {
   // Show welcome message when no username is provided (check this FIRST)
   if (!username) {
     return (
-      <Card className="bg-card text-card-foreground p-8 rounded-lg text-center bg-background">
-        <div className="max-w-xl mx-auto">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
-            <span className="text-2xl">📊</span>
+      <Card className="bg-card text-card-foreground p-4 sm:p-6 lg:p-8 rounded-lg text-center">
+        <div className="max-w-2xl mx-auto">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+            <span className="text-xl sm:text-2xl">📊</span>
           </div>
-          <h2 className="text-2xl font-bold mb-3">Advanced Analytics</h2>
-          <p className="text-muted-foreground mb-6">
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3">Advanced Analytics</h2>
+          <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
             Get detailed insights into engagement rates, content performance, and audience demographics for any Instagram profile.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="p-3 rounded-lg bg-background border">
-              <div className="text-lg mb-1">📈</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
+            <div className="p-2 sm:p-3 rounded-lg bg-background border">
+              <div className="text-base sm:text-lg mb-1">📈</div>
               <div className="text-xs font-medium">Engagement</div>
             </div>
-            <div className="p-3 rounded-lg bg-background border">
-              <div className="text-lg mb-1">💝</div>
+            <div className="p-2 sm:p-3 rounded-lg bg-background border">
+              <div className="text-base sm:text-lg mb-1">💝</div>
               <div className="text-xs font-medium">Likes</div>
             </div>
-            <div className="p-3 rounded-lg bg-background border">
-              <div className="text-lg mb-1">💬</div>
+            <div className="p-2 sm:p-3 rounded-lg bg-background border">
+              <div className="text-base sm:text-lg mb-1">💬</div>
               <div className="text-xs font-medium">Comments</div>
             </div>
-            <div className="p-3 rounded-lg bg-background border">
-              <div className="text-lg mb-1">📋</div>
+            <div className="p-2 sm:p-3 rounded-lg bg-background border">
+              <div className="text-base sm:text-lg mb-1">📋</div>
               <div className="text-xs font-medium">Trends</div>
             </div>
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Enter a username above to start analyzing their performance metrics and audience insights.
           </p>
         </div>
@@ -86,25 +86,35 @@ export function AnalyticsSection({ username }: { username?: string }) {
   ]
 
   return (
-    <section className="grid gap-4 md:grid-cols-2">
-      <Card className="p-4 bg-card text-card-foreground">
-        <h2 className="text-lg font-semibold mb-2">Engagement Overview</h2>
-        <div className="grid grid-cols-3 gap-3">
+    <section className="grid gap-3 sm:gap-4 lg:grid-cols-2">
+      <Card className="p-3 sm:p-4 bg-card text-card-foreground">
+        <h2 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">Engagement Overview</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
           <Metric label="Avg Likes" value={Intl.NumberFormat().format(data.avgLikes)} />
           <Metric label="Avg Comments" value={Intl.NumberFormat().format(data.avgComments)} />
           <Metric label="Eng. Rate" value={`${data.engagementRate}%`} />
         </div>
         {data.trend && data.trend.length > 0 ? (
-          <div className="h-56 mt-4">
+          <div className="h-48 sm:h-56 mt-3 sm:mt-4">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data.trend}>
-                <XAxis dataKey="index" stroke="var(--color-muted-foreground)" />
-                <YAxis stroke="var(--color-muted-foreground)" />
+                <XAxis 
+                  dataKey="index" 
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickMargin={5}
+                />
+                <YAxis 
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickMargin={5}
+                />
                 <Tooltip
                   contentStyle={{
                     background: "var(--color-card)",
                     color: "var(--color-card-foreground)",
                     border: `1px solid var(--color-border)`,
+                    fontSize: "12px",
                   }}
                 />
                 <Line type="monotone" dataKey="likes" stroke="var(--color-chart-1)" strokeWidth={2} dot={false} />
@@ -113,25 +123,35 @@ export function AnalyticsSection({ username }: { username?: string }) {
             </ResponsiveContainer>
           </div>
         ) : (
-          <div className="h-56 mt-4 flex items-center justify-center text-muted-foreground">
-            <p>No trend data available</p>
+          <div className="h-48 sm:h-56 mt-3 sm:mt-4 flex items-center justify-center text-muted-foreground">
+            <p className="text-sm">No trend data available</p>
           </div>
         )}
       </Card>
 
-      <Card className="p-4 bg-card text-card-foreground">
-        <h2 className="text-lg font-semibold mb-2">Likes vs Comments</h2>
+      <Card className="p-3 sm:p-4 bg-card text-card-foreground">
+        <h2 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">Likes vs Comments</h2>
         {data.trend && data.trend.length > 0 ? (
-          <div className="h-56">
+          <div className="h-48 sm:h-56">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data.trend}>
-                <XAxis dataKey="index" stroke="var(--color-muted-foreground)" />
-                <YAxis stroke="var(--color-muted-foreground)" />
+                <XAxis 
+                  dataKey="index" 
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickMargin={5}
+                />
+                <YAxis 
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickMargin={5}
+                />
                 <Tooltip
                   contentStyle={{
                     background: "var(--color-card)",
                     color: "var(--color-card-foreground)",
                     border: `1px solid var(--color-border)`,
+                    fontSize: "12px",
                   }}
                 />
                 <Bar dataKey="likes" fill="var(--color-chart-1)" />
@@ -140,17 +160,18 @@ export function AnalyticsSection({ username }: { username?: string }) {
             </ResponsiveContainer>
           </div>
         ) : (
-          <div className="h-56 flex items-center justify-center text-muted-foreground">
-            <p>No data available for comparison</p>
+          <div className="h-48 sm:h-56 flex items-center justify-center text-muted-foreground">
+            <p className="text-sm">No data available for comparison</p>
           </div>
         )}
       </Card>
 
       {data.demographics && (
-        <Card className="p-4 bg-card text-card-foreground md:col-span-2">
-          <h2 className="text-lg font-semibold mb-2">Audience Demographics</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="h-64">
+        <Card className="p-3 sm:p-4 bg-card text-card-foreground lg:col-span-2">
+          <h2 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">Audience Demographics</h2>
+          <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
+            <div className="h-48 sm:h-64">
+              <h3 className="text-sm font-medium mb-2">Gender Distribution</h3>
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -161,8 +182,8 @@ export function AnalyticsSection({ username }: { username?: string }) {
                     ]}
                     dataKey="value"
                     nameKey="name"
-                    innerRadius={50}
-                    outerRadius={80}
+                    innerRadius={30}
+                    outerRadius={60}
                     paddingAngle={2}
                   >
                     {[0, 1, 2].map((i) => (
@@ -174,21 +195,33 @@ export function AnalyticsSection({ username }: { username?: string }) {
                       background: "var(--color-card)",
                       color: "var(--color-card-foreground)",
                       border: `1px solid var(--color-border)`,
+                      fontSize: "12px",
                     }}
                   />
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="h-64">
+            <div className="h-48 sm:h-64">
+              <h3 className="text-sm font-medium mb-2">Age Groups</h3>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={data.demographics.age}>
-                  <XAxis dataKey="range" stroke="var(--color-muted-foreground)" />
-                  <YAxis stroke="var(--color-muted-foreground)" />
+                  <XAxis 
+                    dataKey="range" 
+                    stroke="var(--color-muted-foreground)"
+                    fontSize={10}
+                    tickMargin={5}
+                  />
+                  <YAxis 
+                    stroke="var(--color-muted-foreground)"
+                    fontSize={10}
+                    tickMargin={5}
+                  />
                   <Tooltip
                     contentStyle={{
                       background: "var(--color-card)",
                       color: "var(--color-card-foreground)",
                       border: `1px solid var(--color-border)`,
+                      fontSize: "12px",
                     }}
                   />
                   <Bar dataKey="percent" fill="var(--color-chart-2)" />
@@ -204,9 +237,9 @@ export function AnalyticsSection({ username }: { username?: string }) {
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-md border border-border p-3">
-      <p className="text-sm text-muted-foreground">{label}</p>
-      <p className="text-xl font-medium">{value}</p>
+    <div className="rounded-md border border-border p-2 sm:p-3">
+      <p className="text-xs sm:text-sm text-muted-foreground">{label}</p>
+      <p className="text-base sm:text-lg lg:text-xl font-medium">{value}</p>
     </div>
   )
 }
