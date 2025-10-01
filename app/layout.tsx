@@ -5,9 +5,9 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'Instagram Analytics Dashboard',
+  description: 'Analyze any public Instagram profile with detailed insights and analytics',
+  generator: 'Next.js',
 }
 
 export default function RootLayout({
